@@ -48,7 +48,7 @@ Install Python 3 and MySQL Server.
 ### 2. Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/Setosky/job-application-tracker
 cd job_tracker
 ```
 
