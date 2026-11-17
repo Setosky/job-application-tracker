@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Job Match</h2>
+
+<p>Enter your skills separated by commas to find matching jobs.</p>
+
+<form method="POST">
+    <div class="mb-3">
+        <label>Your Skills</label>
+        <textarea name="skills" class="form-control" rows="4"
+                  placeholder="Python, SQL, Flask, HTML, CSS"
+                  required>{{ skills_text }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Find Matching Jobs</button>
+</form>
+
+{% if results %}
+<hr>
+<h3>Matching Jobs</h3>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Match Percentage</th>
+            <th>Matched Skills</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in results %}
+        <tr>
+            <td>{{ job.job_title }}</td>
+            <td>{{ job.company_name }}</td>
+            <td>{{ job.match_percentage }}%</td>
+            <td>{{ job.matched_skills }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% elif searched %}
+<p>No matching jobs found.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ 'Edit Job' if job else 'Add Job' }}</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label>Company</label>
+        <select name="company_id" class="form-control" required>
+            {% for company in companies %}
+            <option value="{{ company.company_id }}"
+                {% if job and job.company_id == company.company_id %}selected{% endif %}>
+                {{ company.company_name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Job Title</label>
+        <input name="job_title" class="form-control" value="{{ job.job_title if job else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Job Type</label>
+        <select name="job_type" class="form-control">
+            {% for type in ['Full-time', 'Part-time', 'Contract', 'Internship'] %}
+            <option value="{{ type }}" {% if job and job.job_type == type %}selected{% endif %}>{{ type }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Minimum Salary</label>
+        <input type="number" name="salary_min" class="form-control" value="{{ job.salary_min if job and job.salary_min else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Maximum Salary</label>
+        <input type="number" name="salary_max" class="form-control" value="{{ job.salary_max if job and job.salary_max else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Job URL</label>
+        <input name="job_url" class="form-control" value="{{ job.job_url if job else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Date Posted</label>
+        <input type="date" name="date_posted" class="form-control" value="{{ job.date_posted if job and job.date_posted else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Requirements (comma-separated skills)</label>
+        <input name="requirements" class="form-control"
+               value="{{ job.requirements if job and job.requirements else '' }}"
+               placeholder="Python, SQL, HTML">
+    </div>
+
+    <button class="btn btn-success">Save</button>
+    <a href="/jobs" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

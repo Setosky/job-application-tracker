@@ -1,0 +1,91 @@
+
+body {
+    background-color: #f4f6f9;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.navbar {
+    background-color: #1f2937 !important;
+    padding: 15px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    color: white !important;
+}
+
+.nav-link {
+    color: #d1d5db !important;
+    margin-right: 10px;
+}
+
+.nav-link:hover {
+    color: white !important;
+}
+
+.container {
+    margin-top: 35px;
+    margin-bottom: 40px;
+}
+
+h1, h2, h3, h4 {
+    color: #1f2937;
+    font-weight: 600;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.card h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.btn {
+    border-radius: 6px;
+    padding: 8px 15px;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    border-color: #2563eb;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-success {
+    background-color: #15803d;
+    border-color: #15803d;
+}
+
+.table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table th {
+    background-color: #1f2937;
+    color: white;
+}
+
+.form-control {
+    border-radius: 6px;
+    padding: 10px;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 6px;
+}

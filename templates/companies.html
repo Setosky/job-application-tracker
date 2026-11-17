@@ -1,0 +1,49 @@
+
+{% extends "base.html" %}
+
+{% block title %}Companies - Job Tracker{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Companies</h2>
+    <a href="/companies/new" class="btn btn-primary">Add Company</a>
+</div>
+
+<table class="table table-striped table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Company</th>
+            <th>Industry</th>
+            <th>Website</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for company in companies %}
+        <tr>
+            <td>{{ company.company_name }}</td>
+            <td>{{ company.industry or 'N/A' }}</td>
+            <td>{{ company.website or 'N/A' }}</td>
+            <td>{{ company.city or '' }} {{ company.state or '' }}</td>
+            <td>
+                <a href="/companies/edit/{{ company.company_id }}"
+                   class="btn btn-sm btn-warning">Edit</a>
+
+                <form action="/companies/delete/{{ company.company_id }}"
+                      method="POST" style="display:inline;"
+                      onsubmit="return confirm('Delete this company and its related records?');">
+                    <button type="submit" class="btn btn-sm btn-danger">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" class="text-center">No companies added yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

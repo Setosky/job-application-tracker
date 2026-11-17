@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ 'Edit Application' if application else 'Add Application' }}</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Job</label>
+        <select name="job_id" class="form-control" required>
+            {% for job in jobs %}
+            <option value="{{ job.job_id }}"
+                {% if application and application.job_id == job.job_id %}selected{% endif %}>
+                {{ job.job_title }} - {{ job.company_name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Application Date</label>
+        <input type="date" name="application_date" class="form-control"
+               value="{{ application.application_date if application else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Status</label>
+        <select name="status" class="form-control">
+            {% for status in ['Applied', 'Screening', 'Interview', 'Offer', 'Rejected', 'Withdrawn'] %}
+            <option value="{{ status }}"
+                {% if application and application.status == status %}selected{% endif %}>
+                {{ status }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Resume Version</label>
+        <input name="resume_version" class="form-control"
+               value="{{ application.resume_version if application else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Cover Letter Sent?</label>
+        <select name="cover_letter_sent" class="form-control">
+            <option value="1" {% if application and application.cover_letter_sent %}selected{% endif %}>Yes</option>
+            <option value="0" {% if application and not application.cover_letter_sent %}selected{% endif %}>No</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Interview Data (notes)</label>
+        <textarea name="interview_data" class="form-control"
+                  placeholder="Interview date, interviewer, notes...">{{ application.interview_data if application and application.interview_data else '' }}</textarea>
+    </div>
+
+    <button class="btn btn-success">Save</button>
+    <a href="/applications" class="btn btn-secondary">Cancel</a>
+
+</form>
+
+{% endblock %}

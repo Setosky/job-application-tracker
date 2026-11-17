@@ -1,0 +1,58 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>{{ 'Edit Contact' if contact else 'Add Contact' }}</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label>Company</label>
+        <select name="company_id" class="form-control" required>
+            {% for company in companies %}
+            <option value="{{ company.company_id }}"
+                {% if contact and contact.company_id == company.company_id %}selected{% endif %}>
+                {{ company.company_name }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Contact Name</label>
+        <input type="text" name="contact_name" class="form-control"
+               value="{{ contact.contact_name if contact else '' }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Job Title</label>
+        <input type="text" name="title" class="form-control"
+               value="{{ contact.title if contact else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control"
+               value="{{ contact.email if contact else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input type="text" name="phone" class="form-control"
+               value="{{ contact.phone if contact else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>LinkedIn URL</label>
+        <input type="text" name="linkedin_url" class="form-control"
+               value="{{ contact.linkedin_url if contact else '' }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Notes</label>
+        <textarea name="notes" class="form-control">{{ contact.notes if contact else '' }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Save Contact</button>
+    <a href="{{ url_for('contacts') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

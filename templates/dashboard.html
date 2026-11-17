@@ -1,0 +1,67 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="text-center mb-4">
+    <h1>Job Application Tracker</h1>
+    <p class="text-muted">Manage your job search in one place.</p>
+</div>
+
+<div class="row g-3 mb-4">
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5>Companies</h5>
+                <h2>{{ company_count }}</h2>
+                <a href="{{ url_for('companies') }}">View Companies</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5>Jobs</h5>
+                <h2>{{ job_count }}</h2>
+                <a href="{{ url_for('jobs') }}">View Jobs</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5>Applications</h5>
+                <h2>{{ application_count }}</h2>
+                <a href="{{ url_for('applications') }}">View Applications</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center shadow-sm">
+            <div class="card-body">
+                <h5>Contacts</h5>
+                <h2>{{ contact_count }}</h2>
+                <a href="{{ url_for('contacts') }}">View Contacts</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4>Quick Actions</h4>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{{ url_for('add_company') }}" class="btn btn-primary">Add Company</a>
+            <a href="{{ url_for('add_job') }}" class="btn btn-primary">Add Job</a>
+            <a href="{{ url_for('add_application') }}" class="btn btn-primary">Add Application</a>
+            <a href="{{ url_for('new_contact') }}" class="btn btn-primary">Add Contact</a>
+            <a href="{{ url_for('job_match') }}" class="btn btn-success">Find Job Matches</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
